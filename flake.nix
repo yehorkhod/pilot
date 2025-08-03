@@ -14,7 +14,7 @@
         buildInputs = [ pkgs.fzf pkgs.tmux ];
         installPhase = ''
           mkdir -p $out/bin
-          cp pilot $out/bin/pilot
+          cp pilot.sh $out/bin/pilot
           chmod +x $out/bin/pilot
         '';
 
