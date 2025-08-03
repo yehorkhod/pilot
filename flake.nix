@@ -15,6 +15,7 @@
         installPhase = ''
           mkdir -p $out/bin
           cp pilot $out/bin/pilot
+          chmod +x $out/bin/pilot
         '';
 
       };
