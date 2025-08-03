@@ -5,7 +5,7 @@
     let
       name = "pilot";
       system = "x86_64-linux";
-      pkgs = nixpkgs { inherit system; };
+      pkgs = nixpkgs.legacyPackages.${system};
     in {
       packages.${system}.${name} = pkgs.stdenv.mkDerivation {
         pname = name;
