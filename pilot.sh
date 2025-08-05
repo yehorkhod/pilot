@@ -19,7 +19,8 @@ check_destinations_file() {
 
 fuzzy_find_directory() {
   local message="$1"
-  cat "$DESTINATIONS_FILE" | fzf \ --prompt="$message" \
+  cat "$DESTINATIONS_FILE" | fzf \
+    --prompt="$message" \
     --height=10 \
     --border \
     --reverse
