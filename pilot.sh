@@ -97,13 +97,18 @@ list_destinations() {
   cat "$DESTINATIONS_FILE" | nl -w2 -s': '
 }
 
+edit_destinations() {
+  "${EDITOR:-$(command -v nano || command -v vim || command -v vi)}" "$DESTINATIONS_FILE"
+}
+
 show_help() {
   echo "Usage:"
-  echo "  pilot:             Start a session in a directory"
-  echo "  pilot add <path>:  Add a directory to the list of destinations"
-  echo "  pilot rm:          Remove a directory from the list of destinations"
-  echo "  pilot rm <path>:   Remove a specific directory from the list"
-  echo "  pilot list:        List all destinations"
+  echo "  pilot:                    Start a session in a directory"
+  echo "  pilot add <path>:         Add a directory to the list of destinations"
+  echo "  pilot rm:                 Remove a directory from the list of destinations"
+  echo "  pilot rm <path>:          Remove a specific directory from the list"
+  echo "  pilot list:               List all destinations"
+  echo "  pilot edit-destinations:  Edit destinations file"
 }
 
 invalid_command() {
@@ -115,10 +120,11 @@ invalid_command() {
 # ----------------------------- Main -----------------------------
 # ----------------------------------------------------------------
 case "$1" in
-  "")      select_destination      ;;
-  add)     add_destination "$2"    ;;
-  rm)      remove_destination "$2" ;;
-  list)    list_destinations       ;;
-  --help)  show_help               ;;
-  *)       invalid_command         ;;
+  "")                 select_destination      ;;
+  add)                add_destination "$2"    ;;
+  rm)                 remove_destination "$2" ;;
+  list)               list_destinations       ;;
+  edit-destinations)  edit_destinations       ;;
+  --help)             show_help               ;;
+  *)                  invalid_command         ;;
 esac
